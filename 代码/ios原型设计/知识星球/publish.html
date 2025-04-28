@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 发布</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 44px;
+      z-index: 10;
+    }
+    
+    .cancel-btn {
+      color: var(--text-color);
+      font-size: 16px;
+    }
+    
+    .publish-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 16px;
+      padding: 6px 16px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .publish-btn:disabled {
+      background-color: #c0c0c0;
+      cursor: not-allowed;
+    }
+    
+    .publish-container {
+      padding: 16px;
+      background-color: var(--card-background);
+    }
+    
+    .sphere-selector {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    
+    .sphere-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 18px;
+      margin-right: 12px;
+    }
+    
+    .sphere-name {
+      font-size: 15px;
+      font-weight: 500;
+      flex: 1;
+    }
+    
+    .selector-arrow {
+      color: var(--light-text);
+    }
+    
+    .content-textarea {
+      width: 100%;
+      min-height: 200px;
+      border: none;
+      resize: none;
+      font-size: 16px;
+      line-height: 1.5;
+      outline: none;
+      margin-bottom: 16px;
+    }
+    
+    .media-preview {
+      margin-bottom: 16px;
+    }
+    
+    .preview-image {
+      width: 100%;
+      border-radius: var(--small-radius);
+      margin-bottom: 8px;
+      position: relative;
+    }
+    
+    .remove-preview {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .tools {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .tool-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--light-text);
+    }
+    
+    .tool-item i {
+      font-size: 24px;
+      margin-bottom: 4px;
+    }
+    
+    .tool-item span {
+      font-size: 12px;
+    }
+    
+    .visibility-selector {
+      display: flex;
+      align-items: center;
+      padding: 12px 16px;
+      border-top: 1px solid var(--border-color);
+      color: var(--light-text);
+    }
+    
+    .visibility-selector i {
+      margin-right: 8px;
+    }
+    
+    .visibility-selector span {
+      flex: 1;
+    }
+    
+    .draft-count {
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 头部 -->
+    <div class="header">
+      <a href="home.html" class="cancel-btn">取消</a>
+      <button class="publish-btn">发布</button>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <div class="publish-container">
+        <!-- 选择星球 -->
+        <div class="sphere-selector">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="未来科技探索" class="sphere-avatar">
+          <div class="sphere-name">未来科技探索</div>
+          <i class="fas fa-chevron-down selector-arrow"></i>
+        </div>
+        
+        <!-- 内容输入 -->
+        <textarea class="content-textarea" placeholder="分享你的想法、知识和见解..."></textarea>
+        
+        <!-- 媒体预览 -->
+        <div class="media-preview">
+          <div style="position: relative;">
+            <img src="https://images.unsplash.com/photo-1581090700227-1e37b190418e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="预览图片" class="preview-image">
+            <div class="remove-preview">
+              <i class="fas fa-times"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 工具栏 -->
+      <div class="tools">
+        <div class="tool-item">
+          <i class="fas fa-image"></i>
+          <span>图片</span>
+        </div>
+        <div class="tool-item">
+          <i class="fas fa-video"></i>
+          <span>视频</span>
+        </div>
+        <div class="tool-item">
+          <i class="fas fa-link"></i>
+          <span>链接</span>
+        </div>
+        <div class="tool-item">
+          <i class="fas fa-at"></i>
+          <span>提及</span>
+        </div>
+        <div class="tool-item">
+          <i class="fas fa-hashtag"></i>
+          <span>话题</span>
+        </div>
+      </div>
+      
+      <!-- 可见性选择 -->
+      <div class="visibility-selector">
+        <i class="fas fa-globe"></i>
+        <span>所有成员可见</span>
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      
+      <!-- 草稿箱 -->
+      <div class="visibility-selector">
+        <i class="far fa-save"></i>
+        <span>草稿箱</span>
+        <div class="draft-count">2</div>
+      </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+      <a href="home.html" class="tab-item">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </a>
+      <a href="discover.html" class="tab-item">
+        <i class="fas fa-compass"></i>
+        <span>发现</span>
+      </a>
+      <a href="publish.html" class="tab-item active">
+        <i class="fas fa-plus-circle"></i>
+        <span>发布</span>
+      </a>
+      <a href="messages.html" class="tab-item">
+        <i class="fas fa-comment"></i>
+        <span>消息</span>
+      </a>
+      <a href="profile.html" class="tab-item">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 

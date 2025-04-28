@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 首页</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 16px;
+    }
+    
+    .sphere-scroll {
+      display: flex;
+      overflow-x: auto;
+      padding: 0 12px;
+      margin-bottom: 20px;
+      scrollbar-width: none;
+    }
+    
+    .sphere-scroll::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .sphere-card {
+      flex: 0 0 auto;
+      width: 120px;
+      margin-right: 12px;
+      text-align: center;
+    }
+    
+    .sphere-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 40px;
+      object-fit: cover;
+      margin-bottom: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .sphere-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    
+    .sphere-owner {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+    
+    .post-card {
+      padding: 16px;
+      background-color: var(--card-background);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .post-info {
+      margin-left: 12px;
+    }
+    
+    .post-author {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .post-meta {
+      font-size: 12px;
+      color: var(--light-text);
+      margin-top: 2px;
+    }
+    
+    .post-content {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    
+    .post-image {
+      width: 100%;
+      border-radius: var(--small-radius);
+      margin-bottom: 12px;
+    }
+    
+    .post-actions {
+      display: flex;
+      justify-content: space-between;
+      color: var(--light-text);
+      font-size: 14px;
+    }
+    
+    .post-action {
+      display: flex;
+      align-items: center;
+    }
+    
+    .post-action i {
+      margin-right: 4px;
+    }
+    
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--card-background);
+      position: sticky;
+      top: 44px;
+      z-index: 10;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--light-text);
+    }
+    
+    .tab.active {
+      color: var(--primary-color);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <!-- 头部 -->
+      <div class="header">
+        <div class="logo">知识星球</div>
+        <div>
+          <i class="fas fa-search" style="font-size: 18px;"></i>
+        </div>
+      </div>
+      
+      <!-- 标签页 -->
+      <div class="tabs">
+        <div class="tab active">关注</div>
+        <div class="tab">推荐</div>
+        <div class="tab">热门</div>
+      </div>
+      
+      <!-- 推荐星球 -->
+      <div class="section-title">推荐星球</div>
+      <div class="sphere-scroll">
+        <div class="sphere-card">
+          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="科技前沿" class="sphere-img">
+          <div class="sphere-name">科技前沿</div>
+          <div class="sphere-owner">李明</div>
+        </div>
+        <div class="sphere-card">
+          <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="投资理财" class="sphere-img">
+          <div class="sphere-name">投资理财</div>
+          <div class="sphere-owner">张财富</div>
+        </div>
+        <div class="sphere-card">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="产品经理日记" class="sphere-img">
+          <div class="sphere-name">产品经理日记</div>
+          <div class="sphere-owner">王产品</div>
+        </div>
+        <div class="sphere-card">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="编程学习" class="sphere-img">
+          <div class="sphere-name">编程学习</div>
+          <div class="sphere-owner">程序员小王</div>
+        </div>
+        <div class="sphere-card">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="读书会" class="sphere-img">
+          <div class="sphere-name">读书会</div>
+          <div class="sphere-owner">书虫小李</div>
+        </div>
+      </div>
+      
+      <!-- 内容列表 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="李明" class="avatar">
+          <div class="post-info">
+            <div class="post-author">李明</div>
+            <div class="post-meta">科技前沿 · 2小时前</div>
+          </div>
+        </div>
+        <div class="post-content">
+          今天分享一下关于人工智能在医疗领域的最新应用，这个技术真的可以改变很多传统医疗模式...
+        </div>
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="AI医疗" class="post-image">
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>128</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>36</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="张财富" class="avatar">
+          <div class="post-info">
+            <div class="post-author">张财富</div>
+            <div class="post-meta">投资理财 · 昨天</div>
+          </div>
+        </div>
+        <div class="post-content">
+          最近市场波动较大，我认为现在是调整资产配置的好时机。以下是我对未来三个月的市场预测和投资建议...
+        </div>
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>89</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>42</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="王产品" class="avatar">
+          <div class="post-info">
+            <div class="post-author">王产品</div>
+            <div class="post-meta">产品经理日记 · 3天前</div>
+          </div>
+        </div>
+        <div class="post-content">
+          产品经理如何有效地与开发团队沟通？今天分享我在过去5年积累的经验和教训...
+        </div>
+        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="团队沟通" class="post-image">
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>156</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>78</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+      <a href="home.html" class="tab-item active">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </a>
+      <a href="discover.html" class="tab-item">
+        <i class="fas fa-compass"></i>
+        <span>发现</span>
+      </a>
+      <a href="publish.html" class="tab-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>发布</span>
+      </a>
+      <a href="messages.html" class="tab-item">
+        <i class="fas fa-comment"></i>
+        <span>消息</span>
+      </a>
+      <a href="profile.html" class="tab-item">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 

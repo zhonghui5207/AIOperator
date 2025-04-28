@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建新表</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">创建新的中间表</h1>
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-info">
+            <ul class="mb-0">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+        
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">定义表结构</h5>
+                <a href="{{ url_for('index') }}" class="btn btn-light btn-sm">返回首页</a>
+            </div>
+            <div class="card-body">
+                <form action="{{ url_for('create_table') }}" method="post" id="create-table-form">
+                    <div class="mb-3">
+                        <label for="table_name" class="form-label">表名称</label>
+                        <input type="text" class="form-control" id="table_name" name="table_name" required>
+                        <div class="form-text">请输入要创建的数据库表名称</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">表字段</label>
+                        <div id="columns-container">
+                            <div class="row mb-2 column-row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="column_name" placeholder="字段名称" required>
+                                </div>
+                                <div class="col-md-5">
+                                    <select class="form-select" name="column_type">
+                                        <option value="TEXT">TEXT (文本)</option>
+                                        <option value="INTEGER">INTEGER (整数)</option>
+                                        <option value="REAL">REAL (浮点数)</option>
+                                        <option value="NUMERIC">NUMERIC (数值)</option>
+                                        <option value="BLOB">BLOB (二进制)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" class="btn btn-danger remove-column">×</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-secondary mt-2" id="add-column">添加字段</button>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary">取消</a>
+                        <button type="submit" class="btn btn-success">创建表</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const columnsContainer = document.getElementById('columns-container');
+            const addColumnBtn = document.getElementById('add-column');
+            
+            // Add new column row
+            addColumnBtn.addEventListener('click', function() {
+                const newRow = document.createElement('div');
+                newRow.className = 'row mb-2 column-row';
+                newRow.innerHTML = `
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" name="column_name" placeholder="字段名称" required>
+                    </div>
+                    <div class="col-md-5">
+                        <select class="form-select" name="column_type">
+                            <option value="TEXT">TEXT (文本)</option>
+                            <option value="INTEGER">INTEGER (整数)</option>
+                            <option value="REAL">REAL (浮点数)</option>
+                            <option value="NUMERIC">NUMERIC (数值)</option>
+                            <option value="BLOB">BLOB (二进制)</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-danger remove-column">×</button>
+                    </div>
+                `;
+                columnsContainer.appendChild(newRow);
+                
+                // Add event listener to the new remove button
+                const removeBtn = newRow.querySelector('.remove-column');
+                removeBtn.addEventListener('click', function() {
+                    columnsContainer.removeChild(newRow);
+                });
+            });
+            
+            // Add event listeners to existing remove buttons
+            document.querySelectorAll('.remove-column').forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('.column-row');
+                    if (document.querySelectorAll('.column-row').length > 1) {
+                        columnsContainer.removeChild(row);
+                    } else {
+                        alert('至少需要一个字段');
+                    }
+                });
+            });
+            
+            // Form validation
+            document.getElementById('create-table-form').addEventListener('submit', function(event) {
+                const tableNameInput = document.getElementById('table_name');
+                const columnInputs = document.querySelectorAll('input[name="column_name"]');
+                
+                if (!tableNameInput.value.trim()) {
+                    alert('请输入表名称');
+                    event.preventDefault();
+                    return;
+                }
+                
+                let hasColumn = false;
+                columnInputs.forEach(input => {
+                    if (input.value.trim()) {
+                        hasColumn = true;
+                    }
+                });
+                
+                if (!hasColumn) {
+                    alert('请至少添加一个有效的字段');
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

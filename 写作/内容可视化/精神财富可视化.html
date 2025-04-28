@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精神财富 - 万维钢</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        
+        /* Theming */
+        :root {
+            --text-primary: #1a202c;
+            --text-secondary: #4a5568;
+            --bg-primary: #f7fafc;
+            --bg-secondary: #edf2f7;
+            --accent-primary: #3b82f6;   /* 主要强调色 - 蓝色 */
+            --accent-secondary: #8b5cf6; /* 次要强调色 - 紫色 */
+            --accent-tertiary: #10b981;  /* 第三强调色 - 绿色 */
+        }
+        
+        .dark {
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+        }
+        
+        /* Utility Classes */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .rotate-slow {
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Animation Delays */
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+        .delay-4 { transition-delay: 0.8s; }
+        .delay-5 { transition-delay: 1.0s; }
+        
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+        }
+        
+        /* Text Styling */
+        .key-concept {
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-primary);
+            padding-bottom: 1px;
+        }
+        
+        .highlight-primary {
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+        
+        .highlight-secondary {
+            color: var(--accent-secondary);
+            font-weight: 700;
+        }
+        
+        .highlight-tertiary {
+            color: var(--accent-tertiary);
+            font-weight: 700;
+        }
+        
+        /* Cards */
+        .content-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pillar-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Fade In Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        /* Section Headers */
+        .purpose-text {
+            color: var(--accent-primary);
+        }
+        
+        .growth-text {
+            color: var(--accent-tertiary);
+        }
+        
+        .space-text {
+            color: var(--accent-secondary);
+        }
+        
+        /* 概念图样式 */
+        .concept-map {
+            width: 100%;
+            max-width: 600px;
+            margin: 2rem auto;
+            position: relative;
+        }
+        
+        .concept-node {
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .concept-connection {
+            position: absolute;
+            background-color: #ccc;
+            transform-origin: 0 0;
+            z-index: -1;
+        }
+        
+        /* Ikigai 图表样式 */
+        .ikigai-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+        
+        .ikigai-circle {
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            opacity: 0.7;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .talent-matrix {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            margin: 0 auto;
+        }
+        
+        .matrix-cell {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header with theme toggle -->
+        <header class="flex justify-between items-center mb-12">
+            <h1 class="text-4xl font-bold text-gradient">精神财富</h1>
+            <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 focus:outline-none">
+                <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+            </button>
+        </header>
+        
+        <!-- Introduction -->
+        <section class="mb-12 fade-in">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <p class="text-lg leading-relaxed mb-4">
+                    这一讲的主题是<span class="key-concept">「精神财富」</span>，也可以叫心理财富。精神财富<span class="highlight-secondary">不是</span>指琴棋书画花前月下赏春悲秋这样的精神生活，而是能让你<span class="highlight-primary">坚持与「常态」斗争的能量</span>。
+                </p>
+                <p class="text-lg leading-relaxed mb-4">
+                    <span class="highlight-tertiary">平庸是一种地心引力</span>。这个世界的设定就是让你过「常态化」的生活，最好安于现状，和别人一样。多数人不到三十岁就只想着找个稳定的工作，按时发工资，顺利退休养老。
+                </p>
+                <p class="text-lg leading-relaxed">
+                    但也有人<span class="highlight-secondary">拒绝签署停火协议</span>。他们过了中年还要奋起斗争，不甘于停滞，拒绝接受现状，不但要有所成就，而且要有自身特色的成就。这场斗争，就是你人生<span class="highlight-primary">最伟大的英雄之旅</span>。
+                </p>
+            </div>
+        </section>
+        
+        <!-- 精神财富概念图 -->
+        <section class="mb-12 fade-in">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <h2 class="text-2xl font-bold mb-6 text-center">精神财富概念图</h2>
+                <div class="concept-map" id="mentalWealthMap" style="height: 400px;">
+                    <!-- 概念图将通过JavaScript动态生成 -->
+                </div>
+            </div>
+        </section>
+        
+        <!-- What is Mental Wealth -->
+        <section class="mb-12 fade-in delay-1">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">什么是精神财富？</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <p class="text-lg leading-relaxed mb-4">
+                    精神财富能给你保持<span class="highlight-secondary">独特性的笃定感</span>。<span class="highlight-primary">逆境不会让你失落，胜利也不会让你懈怠</span>，你具有<span class="key-concept">反脆弱性</span>，你笃定地追求成长，你的人生充满意义，你有深层次的幸福感。
+                </p>
+                <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg my-6 quote animated-bg">
+                    <p class="text-lg italic">
+                        "<span class="highlight-primary">精神财富的基础，是好奇心</span>。好奇心让你质疑现状，探索新知识，渴望成长。"
+                    </p>
+                </div>
+                <p class="text-lg leading-relaxed mb-4">
+                    <span class="highlight-tertiary">好奇心是青春之泉</span>。研究证明，好奇心强的人，情绪更积极，焦虑水平更低，生活满意度更高，大脑的认知功能保持得更好，心理和生理都更健康，更快乐和充实。
+                </p>
+                <p class="text-lg leading-relaxed">
+                    很多人从青少年晚期就开始减少好奇心。他们到了二三十岁就会对工作以外的事情不再感兴趣；到了四五十岁，就已经不再试图理解世界；等到六七十岁，就彻底放弃学习任何新东西。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Three Pillars Section -->
+        <section class="mb-12 fade-in delay-2">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">精神财富的三大支柱</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Purpose Pillar -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 pillar-card">
+                    <h3 class="text-xl font-bold mb-3 purpose-text">目的感</h3>
+                    <p class="text-center mb-4">找到你的<span class="key-concept purpose">生命意义</span></p>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        <span class="highlight-primary">目的感</span>是你人生的指南针，帮助你在混乱中找到方向。它不是外部强加的，而是来自内心的呼唤。
+                    </p>
+                </div>
+                
+                <!-- Growth Pillar -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 pillar-card">
+                    <h3 class="text-xl font-bold mb-3 growth-text">持续成长</h3>
+                    <p class="text-center mb-4">探索你的<span class="key-concept growth">潜能极限</span></p>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        <span class="highlight-tertiary">持续成长</span>不是为了达到某个具体水平，而是兑现你的天赋，探索你的潜能。成长本身就是一种成就。
+                    </p>
+                </div>
+                
+                <!-- Space Pillar -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 pillar-card">
+                    <h3 class="text-xl font-bold mb-3 space-text">个人空间</h3>
+                    <p class="text-center mb-4">培养你的<span class="key-concept space">独特性</span></p>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        <span class="highlight-secondary">个人空间</span>是你能温养独特性的地方，是刺激和回应之间的那片区域，让你有自由选择如何回应的能力。
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Purpose Section -->
+        <section class="mb-12 fade-in delay-3">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">目的：找到你的生命意义</h2>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <p class="text-lg leading-relaxed mb-4">
+                    目的是你与<span class="highlight-primary">某个比自己更大的事物的连接</span>。它给你创造了一个身份，让你任何时候都清楚地知道<span class="key-concept purpose">自己是谁、代表什么、想要去向何方</span>。
+                </p>
+                
+                <div class="bg-blue-50 dark:bg-blue-900 p-4 rounded-lg my-6 quote animated-bg">
+                    <p class="text-lg italic">
+                        "人们不是死于饥饿，而是死于没有目标；不是缺少力量，而是缺少方向。" — <span class="highlight-primary">尼采</span>
+                    </p>
+                </div>
+                
+                <!-- Ikigai Visualization -->
+                <h3 class="text-xl font-semibold mb-4 text-center">找到你的生命意义：Ikigai 生之意义</h3>
+                <div class="ikigai-container my-8" id="ikigaiDiagram">
+                    <!-- Ikigai图将通过JavaScript动态生成 -->
+                </div>
+                
+                <p class="text-lg leading-relaxed mb-6">
+                    找到目的，你需要思考三个问题的交集：
+                </p>
+                
+                <ul class="list-disc pl-6 space-y-3 text-lg mb-6">
+                    <li>
+                        <span class="font-medium highlight-primary">你热爱什么？</span> — 什么事情能让你感到热情和兴奋
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-tertiary">你擅长什么？</span> — 你的天赋和能力所在
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-secondary">世界需要什么？</span> — 能为他人创造价值的事物
+                    </li>
+                </ul>
+                
+                <h3 class="text-xl font-semibold mb-4 text-center">天赋与能量矩阵</h3>
+                
+                <div class="talent-matrix my-8" id="talentMatrix">
+                    <!-- 天赋矩阵将通过JavaScript动态生成 -->
+                </div>
+                
+                <p class="text-lg leading-relaxed mt-4">
+                    你应该优先选择把人生目的放在<span class="highlight-primary">天才区</span>，远离<span class="highlight-secondary">危险区</span>。在危险区，你很擅长，所以能获得物质回报，但做这个事儿对你纯粹是一种消耗，毫无激情。人生有限，别把时间花在这样的事儿上。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Growth Section -->
+        <section class="mb-12 fade-in delay-4">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">成长：探索你的潜能</h2>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <p class="text-lg leading-relaxed mb-4">
+                    成长不是说要达到某个具体的水平，也不是考个证书、拿个学位 —— 成长是要<span class="key-concept growth">兑现你的天赋，探索你的潜能</span>。
+                </p>
+                
+                <p class="text-lg leading-relaxed mb-4">
+                    成长不是为了通往其他成就的手段，<span class="highlight-tertiary">成长本身就是一种成就</span>。作为一个人，你自然就希望自己长得更高，在某个领域变得更强，希望把天赋发挥出来，你自然就想要进步。
+                </p>
+                
+                <div class="bg-green-50 dark:bg-green-900 p-4 rounded-lg my-6 quote animated-bg">
+                    <p class="text-lg italic">
+                        "<span class="highlight-tertiary">活，就好像明天就要死一样；学习，就像你会永远活着一样。</span>" — <span class="highlight-primary">甘地</span>
+                    </p>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4">高效学习方法</h3>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+                        <h4 class="font-bold text-lg mb-2">费曼学习法</h4>
+                        <p>通过<span class="highlight-primary">向他人解释</span>概念来测试自己的理解。如果你不能用简单的语言解释，那么你并没有真正理解。</p>
+                    </div>
+                    
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-all">
+                        <h4 class="font-bold text-lg mb-2">苏格拉底提问法</h4>
+                        <p>通过<span class="highlight-primary">不断提问</span>来深入理解主题，挑战假设，揭示矛盾，引导思考更深层次的问题。</p>
+                    </div>
+                </div>
+                
+                <p class="text-lg leading-relaxed">
+                    学习本身就是一种目的。<span class="highlight-tertiary">成长的关键不仅仅是为了获取知识</span>，而是为了探索自己的潜能极限，不断突破自我，成为更好的自己。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Space Section -->
+        <section class="mb-12 fade-in delay-5">
+            <h2 class="text-2xl font-bold mb-6 gradient-text">空间：培养独特性</h2>
+            
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 content-card">
+                <p class="text-lg leading-relaxed mb-4">
+                    空间是一个你能温养<span class="key-concept space">独特性</span>的地方。正如维克多·弗兰克尔所说：「<span class="highlight-secondary">在刺激和回应之间，我们还有选择如何回应的自由与能力。</span>」
+                </p>
+                
+                <p class="text-lg leading-relaxed mb-4">
+                    空间就是刺激（外界给予）和回应（你的反应）之间的那片区域。在这里，你可以<span class="highlight-primary">按下暂停键</span>，自己思考一番，而不是立即被环境和情绪牵着走。
+                </p>
+                
+                <div class="bg-purple-50 dark:bg-purple-900 p-4 rounded-lg my-6 quote animated-bg">
+                    <p class="text-lg italic">
+                        "<span class="highlight-secondary">独特性不是天生的，而是需要培养的</span>。在一个标准化的世界里，保持独特需要有意识的努力。"
+                    </p>
+                </div>
+                
+                <h3 class="text-xl font-semibold mb-4">创造独处空间的方法</h3>
+                
+                <ul class="list-disc pl-6 space-y-3 text-lg">
+                    <li>
+                        <span class="font-medium highlight-secondary">无科技散步</span> — 每天进行一次不带耳机、不看手机的散步，单纯是思考
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-secondary">冥想练习</span> — 定期进行冥想，培养专注力和内省能力
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-secondary">阅读时间</span> — 安排固定的阅读时间，不受干扰地沉浸在书籍中
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-secondary">自然体验</span> — 定期接触自然，远离城市喧嚣
+                    </li>
+                    <li>
+                        <span class="font-medium highlight-secondary">写作反思</span> — 通过写日记或随笔整理思绪，加深自我认知
+                    </li>
+                </ul>
+            </div>
+        </section>
+        
+        <!-- Conclusion -->
+        <section class="mb-16 fade-in delay-5">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">总结</h2>
+                <p class="text-lg leading-relaxed mb-4">
+                    精神财富是<span class="key-concept">抵抗平庸的强大力量</span>。它建立在<span class="highlight-tertiary">好奇心</span>的基础上，由<span class="highlight-primary">目的感</span>、<span class="highlight-tertiary">持续成长</span>和<span class="highlight-secondary">个人空间</span>三大支柱支撑。
+                </p>
+                <p class="text-lg leading-relaxed mb-6">
+                    培养精神财富，你将获得面对生活挑战的<span class="highlight-primary">内在力量</span>，保持<span class="highlight-secondary">独特性</span>，实现真正的<span class="highlight-tertiary">繁荣</span>。这是一场与平庸的持久战，也是你最伟大的英雄之旅。
+                </p>
+            </div>
+        </section>
+        
+        <!-- Author Info -->
+        <footer class="border-t border-gray-200 dark:border-gray-700 pt-8 pb-16">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center">
+                <div>
+                    <h3 class="text-xl font-bold mb-2 gradient-text">作者: 万维钢</h3>
+                    <div class="flex space-x-4 text-gray-600 dark:text-gray-400">
+                        <a href="https://twitter.com/geekonomist" class="hover:text-blue-500 transition-colors duration-300 flex items-center">
+                            <i class="fab fa-twitter mr-1"></i> @geekonomist
+                        </a>
+                    </div>
+                </div>
+                <div class="mt-4 md:mt-0 text-gray-600 dark:text-gray-400">
+                    2025 版权所有
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Check for system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.classList.add('dark');
+        }
+        
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+        
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // 创建精神财富概念图
+        function createMentalWealthMap() {
+            const container = document.getElementById('mentalWealthMap');
+            container.innerHTML = '';
+            
+            // 创建中心节点
+            const centerNode = document.createElement('div');
+            centerNode.className = 'concept-node absolute';
+            centerNode.style.width = '120px';
+            centerNode.style.height = '120px';
+            centerNode.style.backgroundColor = '#3b82f6';
+            centerNode.style.color = 'white';
+            centerNode.style.left = 'calc(50% - 60px)';
+            centerNode.style.top = 'calc(50% - 60px)';
+            centerNode.innerHTML = '<span>精神财富</span>';
+            container.appendChild(centerNode);
+            
+            // 创建三个支柱节点
+            const pillars = [
+                { name: '目的感', color: '#3b82f6', angle: -30 },
+                { name: '持续成长', color: '#10b981', angle: 90 },
+                { name: '个人空间', color: '#8b5cf6', angle: 210 }
+            ];
+            
+            const radius = 150;
+            
+            pillars.forEach(pillar => {
+                const angleRad = (pillar.angle * Math.PI) / 180;
+                const x = Math.cos(angleRad) * radius;
+                const y = Math.sin(angleRad) * radius;
+                
+                // 创建节点
+                const node = document.createElement('div');
+                node.className = 'concept-node absolute';
+                node.style.width = '100px';
+                node.style.height = '100px';
+                node.style.backgroundColor = pillar.color;
+                node.style.color = 'white';
+                node.style.left = `calc(50% - 50px + ${x}px)`;
+                node.style.top = `calc(50% - 50px + ${y}px)`;
+                node.innerHTML = `<span>${pillar.name}</span>`;
+                container.appendChild(node);
+                
+                // 创建连接线
+                const connection = document.createElement('div');
+                connection.className = 'concept-connection';
+                
+                const length = Math.sqrt(x * x + y * y);
+                const angle = Math.atan2(y, x) * (180 / Math.PI);
+                
+                connection.style.width = `${length}px`;
+                connection.style.height = '2px';
+                connection.style.backgroundColor = pillar.color;
+                connection.style.left = 'calc(50%)';
+                connection.style.top = 'calc(50%)';
+                connection.style.transform = `rotate(${angle}deg)`;
+                
+                container.appendChild(connection);
+            });
+        }
+
+        // 创建Ikigai图
+        function createIkigaiDiagram() {
+            const container = document.getElementById('ikigaiDiagram');
+            container.innerHTML = '';
+            
+            const circles = [
+                { text: '你热爱的事', color: '#3b82f6', left: '25%', top: '25%' },
+                { text: '你擅长的事', color: '#10b981', left: '75%', top: '25%' },
+                { text: '世界需要的事', color: '#8b5cf6', left: '25%', top: '75%' },
+                { text: '可以获得报酬的事', color: '#f59e0b', left: '75%', top: '75%' }
+            ];
+            
+            circles.forEach(circle => {
+                const div = document.createElement('div');
+                div.className = 'ikigai-circle';
+                div.style.backgroundColor = circle.color;
+                div.style.left = circle.left;
+                div.style.top = circle.top;
+                div.style.transform = 'translate(-50%, -50%)';
+                div.innerHTML = circle.text;
+                container.appendChild(div);
+            });
+            
+            // 创建中心标签
+            const center = document.createElement('div');
+            center.className = 'absolute text-center font-bold text-lg';
+            center.style.left = '50%';
+            center.style.top = '50%';
+            center.style.transform = 'translate(-50%, -50%)';
+            center.style.zIndex = '10';
+            center.style.backgroundColor = 'white';
+            center.style.color = '#1a202c';
+            center.style.padding = '10px';
+            center.style.borderRadius = '50%';
+            center.style.width = '100px';
+            center.style.height = '100px';
+            center.style.display = 'flex';
+            center.style.alignItems = 'center';
+            center.style.justifyContent = 'center';
+            center.style.boxShadow = '0 0 15px rgba(0,0,0,0.2)';
+            center.innerHTML = 'Ikigai<br>生之意义';
+            container.appendChild(center);
+        }
+
+        // 创建天赋矩阵
+        function createTalentMatrix() {
+            const container = document.getElementById('talentMatrix');
+            container.innerHTML = '';
+            
+            const cells = [
+                { title: '天才区', desc: '擅长，且给你能量', color: '#3b82f6' },
+                { title: '爱好区', desc: '不擅长，但给你能量', color: '#10b981' },
+                { title: '危险区', desc: '擅长，但消耗能量', color: '#8b5cf6' },
+                { title: '无意义区', desc: '不擅长，也消耗能量', color: '#94a3b8' }
+            ];
+            
+            cells.forEach(cell => {
+                const div = document.createElement('div');
+                div.className = 'matrix-cell';
+                div.style.backgroundColor = cell.color + '20';
+                div.style.borderColor = cell.color;
+                div.style.borderWidth = '2px';
+                div.style.borderStyle = 'solid';
+                
+                div.innerHTML = `
+                    <h4 class="text-lg font-bold" style="color:${cell.color}">${cell.title}</h4>
+                    <p>${cell.desc}</p>
+                `;
+                
+                container.appendChild(div);
+            });
+        }
+
+        // 页面加载完成后初始化图表
+        window.addEventListener('DOMContentLoaded', () => {
+            createMentalWealthMap();
+            createIkigaiDiagram();
+            createTalentMatrix();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 支付</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 44px;
+      z-index: 10;
+    }
+    
+    .back-btn {
+      margin-right: 16px;
+      font-size: 18px;
+      color: var(--text-color);
+    }
+    
+    .header-title {
+      font-size: 17px;
+      font-weight: 600;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .payment-container {
+      padding: 20px;
+    }
+    
+    .sphere-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .sphere-img {
+      width: 60px;
+      height: 60px;
+      border-radius: 30px;
+      margin-right: 16px;
+    }
+    
+    .sphere-details {
+      flex: 1;
+    }
+    
+    .sphere-name {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .sphere-owner {
+      font-size: 14px;
+      color: var(--light-text);
+    }
+    
+    .payment-card {
+      background-color: var(--card-background);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .plan-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    
+    .plan-option {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--small-radius);
+      position: relative;
+    }
+    
+    .plan-option.selected {
+      border-color: var(--primary-color);
+      background-color: rgba(84, 104, 255, 0.05);
+    }
+    
+    .plan-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      margin-right: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .plan-option.selected .plan-radio {
+      border-color: var(--primary-color);
+    }
+    
+    .plan-option.selected .plan-radio::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+    
+    .plan-details {
+      flex: 1;
+    }
+    
+    .plan-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .plan-description {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+    
+    .plan-price {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .discount-badge {
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      background-color: #ff9500;
+      color: white;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    
+    .payment-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .payment-method {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--small-radius);
+    }
+    
+    .payment-method.selected {
+      border-color: var(--primary-color);
+      background-color: rgba(84, 104, 255, 0.05);
+    }
+    
+    .method-icon {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+      font-size: 20px;
+    }
+    
+    .wechat-pay {
+      color: #07C160;
+    }
+    
+    .alipay {
+      color: #1677FF;
+    }
+    
+    .method-name {
+      flex: 1;
+      font-size: 15px;
+    }
+    
+    .method-radio {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .payment-method.selected .method-radio {
+      border-color: var(--primary-color);
+    }
+    
+    .payment-method.selected .method-radio::after {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: var(--primary-color);
+    }
+    
+    .payment-summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background-color: var(--card-background);
+      border-top: 1px solid var(--border-color);
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    
+    .summary-price {
+      font-size: 14px;
+      color: var(--text-color);
+    }
+    
+    .price-value {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .pay-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 10px 24px;
+      font-size: 16px;
+      font-weight: 500;
+    }
+    
+    .benefits {
+      margin-top: 16px;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    
+    .benefit-icon {
+      color: var(--success-color);
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 头部 -->
+    <div class="header">
+      <a href="sphere_detail.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="header-title">加入星球</div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content" style="padding-bottom: 80px;">
+      <div class="payment-container">
+        <!-- 星球信息 -->
+        <div class="sphere-info">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="未来科技探索" class="sphere-img">
+          <div class="sphere-details">
+            <div class="sphere-name">未来科技探索</div>
+            <div class="sphere-owner">创建者：科技达人</div>
+          </div>
+        </div>
+        
+        <!-- 会员方案 -->
+        <div class="payment-card">
+          <div class="card-title">选择会员方案</div>
+          <div class="plan-options">
+            <div class="plan-option selected">
+              <div class="plan-radio"></div>
+              <div class="plan-details">
+                <div class="plan-name">月度会员</div>
+                <div class="plan-description">30天内无限制访问所有内容</div>
+              </div>
+              <div class="plan-price">¥19</div>
+            </div>
+            
+            <div class="plan-option">
+              <div class="plan-radio"></div>
+              <div class="plan-details">
+                <div class="plan-name">季度会员</div>
+                <div class="plan-description">90天内无限制访问所有内容</div>
+              </div>
+              <div class="plan-price">¥49</div>
+              <div class="discount-badge">省15%</div>
+            </div>
+            
+            <div class="plan-option">
+              <div class="plan-radio"></div>
+              <div class="plan-details">
+                <div class="plan-name">年度会员</div>
+                <div class="plan-description">365天内无限制访问所有内容</div>
+              </div>
+              <div class="plan-price">¥99</div>
+              <div class="discount-badge">省56%</div>
+            </div>
+          </div>
+          
+          <div class="benefits">
+            <div class="benefit-item">
+              <i class="fas fa-check-circle benefit-icon"></i>
+              <span>获取所有历史精华内容</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle benefit-icon"></i>
+              <span>提问优先回复权限</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle benefit-icon"></i>
+              <span>专属会员活动参与资格</span>
+            </div>
+            <div class="benefit-item">
+              <i class="fas fa-check-circle benefit-icon"></i>
+              <span>每月专属资料下载</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 支付方式 -->
+        <div class="payment-card">
+          <div class="card-title">选择支付方式</div>
+          <div class="payment-methods">
+            <div class="payment-method selected">
+              <div class="method-icon wechat-pay">
+                <i class="fab fa-weixin"></i>
+              </div>
+              <div class="method-name">微信支付</div>
+              <div class="method-radio"></div>
+            </div>
+            
+            <div class="payment-method">
+              <div class="method-icon alipay">
+                <i class="fab fa-alipay"></i>
+              </div>
+              <div class="method-name">支付宝</div>
+              <div class="method-radio"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 支付摘要 -->
+    <div class="payment-summary">
+      <div class="summary-price">
+        总计：<span class="price-value">¥19</span>
+      </div>
+      <button class="pay-btn">立即支付</button>
+    </div>
+  </div>
+</body>
+</html> 

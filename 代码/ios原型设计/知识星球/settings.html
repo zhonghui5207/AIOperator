@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 设置</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 44px;
+      z-index: 10;
+    }
+    
+    .back-btn {
+      margin-right: 16px;
+      font-size: 18px;
+      color: var(--text-color);
+    }
+    
+    .header-title {
+      font-size: 17px;
+      font-weight: 600;
+      flex: 1;
+      text-align: center;
+    }
+    
+    .section-title {
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--light-text);
+      background-color: var(--background-color);
+    }
+    
+    .settings-list {
+      background-color: var(--card-background);
+    }
+    
+    .settings-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .settings-item:last-child {
+      border-bottom: none;
+    }
+    
+    .settings-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+      color: var(--primary-color);
+    }
+    
+    .settings-label {
+      flex: 1;
+      font-size: 15px;
+    }
+    
+    .settings-value {
+      color: var(--light-text);
+      font-size: 14px;
+      margin-right: 8px;
+    }
+    
+    .settings-arrow {
+      color: var(--light-text);
+    }
+    
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 24px;
+    }
+    
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+      background-color: var(--primary-color);
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(26px);
+    }
+    
+    .logout-btn {
+      margin: 20px 16px;
+      background-color: var(--danger-color);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: 500;
+      width: calc(100% - 32px);
+      text-align: center;
+    }
+    
+    .version-info {
+      text-align: center;
+      padding: 20px;
+      color: var(--light-text);
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 头部 -->
+    <div class="header">
+      <a href="profile.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+      </a>
+      <div class="header-title">设置</div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <!-- 账户设置 -->
+      <div class="section-title">账户设置</div>
+      <div class="settings-list">
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-user"></i>
+          </div>
+          <div class="settings-label">个人资料</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-lock"></i>
+          </div>
+          <div class="settings-label">账号安全</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-bell"></i>
+          </div>
+          <div class="settings-label">消息通知</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="settings-label">隐私设置</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+      
+      <!-- 通用设置 -->
+      <div class="section-title">通用设置</div>
+      <div class="settings-list">
+        <div class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-moon"></i>
+          </div>
+          <div class="settings-label">深色模式</div>
+          <label class="toggle-switch">
+            <input type="checkbox">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-font"></i>
+          </div>
+          <div class="settings-label">字体大小</div>
+          <div class="settings-value">中</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="settings-label">语言</div>
+          <div class="settings-value">简体中文</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <div class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-wifi"></i>
+          </div>
+          <div class="settings-label">仅在WIFI下加载图片</div>
+          <label class="toggle-switch">
+            <input type="checkbox" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-trash"></i>
+          </div>
+          <div class="settings-label">清除缓存</div>
+          <div class="settings-value">128MB</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+      
+      <!-- 其他设置 -->
+      <div class="section-title">其他</div>
+      <div class="settings-list">
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-info-circle"></i>
+          </div>
+          <div class="settings-label">关于我们</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-file-alt"></i>
+          </div>
+          <div class="settings-label">用户协议</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+        
+        <a href="#" class="settings-item">
+          <div class="settings-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="settings-label">隐私政策</div>
+          <i class="fas fa-chevron-right settings-arrow"></i>
+        </a>
+      </div>
+      
+      <!-- 退出登录 -->
+      <a href="login.html" class="logout-btn">退出登录</a>
+      
+      <!-- 版本信息 -->
+      <div class="version-info">
+        知识星球 v2.0.1
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

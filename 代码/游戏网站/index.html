@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGameTune - Premium Online Gaming Experience</title>
+    <meta name="description" content="Discover the best online games at SGameTune. Play instantly in your browser with no downloads required.">
+    <link rel="canonical" href="https://sgametune.com/">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        apple: {
+                            blue: '#007AFF',
+                            indigo: '#5856D6',
+                            purple: '#AF52DE',
+                            pink: '#FF2D55',
+                            red: '#FF3B30',
+                            orange: '#FF9500',
+                            yellow: '#FFCC00',
+                            green: '#34C759',
+                            teal: '#5AC8FA',
+                            gray: '#8E8E93',
+                            lightgray: '#E5E5EA',
+                            darkgray: '#1C1C1E',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-apple-darkgray text-gray-900 dark:text-white">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-apple-darkgray/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="/" class="flex items-center space-x-2">
+                <span class="text-apple-blue font-bold text-2xl">SGameTune</span>
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#featured" class="font-medium hover:text-apple-blue transition-colors">Featured Games</a>
+                <a href="#popular" class="font-medium hover:text-apple-blue transition-colors">Popular</a>
+                <a href="#new" class="font-medium hover:text-apple-blue transition-colors">New Releases</a>
+                <a href="#categories" class="font-medium hover:text-apple-blue transition-colors">Categories</a>
+            </nav>
+            <button class="md:hidden text-apple-blue" id="mobile-menu-button">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white dark:bg-apple-darkgray border-b border-gray-200 dark:border-gray-800" id="mobile-menu">
+            <div class="container mx-auto px-4 py-3 space-y-3">
+                <a href="#featured" class="block font-medium hover:text-apple-blue transition-colors">Featured Games</a>
+                <a href="#popular" class="block font-medium hover:text-apple-blue transition-colors">Popular</a>
+                <a href="#new" class="block font-medium hover:text-apple-blue transition-colors">New Releases</a>
+                <a href="#categories" class="block font-medium hover:text-apple-blue transition-colors">Categories</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 md:py-20 bg-gradient-to-r from-apple-blue to-apple-teal text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6">Play Instant Games Online</h1>
+                <p class="text-xl md:text-2xl mb-8">The ultimate destination for browser-based gaming with no downloads required.</p>
+                <a href="#featured" class="inline-block bg-white text-apple-blue font-semibold px-6 py-3 rounded-full hover:bg-opacity-90 transition-all transform hover:scale-105">
+                    Start Playing Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Game Section -->
+    <section id="featured" class="py-12 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Featured Game</h2>
+            <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold mb-2">Space Explorer</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Navigate through the cosmos in this immersive space adventure game.</p>
+                    
+                    <!-- Game iframe container with responsive aspect ratio -->
+                    <div class="relative w-full pb-[56.25%] h-0 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4">
+                        <!-- This is a placeholder. Replace with actual iframe when available -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">Game iframe will be placed here</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-semibold text-lg mb-1">Game Details</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Space Explorer is an immersive browser-based game that takes you on a journey through the cosmos. Discover new planets, fight alien enemies, and upgrade your spaceship as you progress through increasingly challenging levels.</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-lg mb-1">How to Play</h4>
+                            <p class="text-gray-600 dark:text-gray-300">Use WASD or arrow keys to navigate your spaceship. Press Space to shoot and E to interact with objects. Collect resources to upgrade your ship and weapons to face tougher challenges ahead.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Games Section -->
+    <section id="popular" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Popular Games</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Game Card 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[56.25%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">Game 1 iframe</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Puzzle Master</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Challenge your brain with increasingly difficult puzzles.</p>
+                        <a href="#" class="text-apple-blue font-medium hover:underline">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Game Card 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[56.25%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">Game 2 iframe</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Racing Legends</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Experience high-speed racing on beautifully designed tracks.</p>
+                        <a href="#" class="text-apple-blue font-medium hover:underline">Play Now</a>
+                    </div>
+                </div>
+                
+                <!-- Game Card 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[56.25%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">Game 3 iframe</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-xl mb-1">Tower Defense</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Build your defenses and stop waves of enemies.</p>
+                        <a href="#" class="text-apple-blue font-medium hover:underline">Play Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Releases Section -->
+    <section id="new" class="py-12 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">New Releases</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- New Game 1 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[75%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">New Game 1</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Fantasy Quest</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Embark on an epic adventure in a magical world.</p>
+                    </div>
+                </div>
+                
+                <!-- New Game 2 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[75%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">New Game 2</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Zombie Survival</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Survive the apocalypse in this thrilling action game.</p>
+                    </div>
+                </div>
+                
+                <!-- New Game 3 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[75%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">New Game 3</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">City Builder</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Design and manage your own virtual metropolis.</p>
+                    </div>
+                </div>
+                
+                <!-- New Game 4 -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="relative pb-[75%] bg-gray-200 dark:bg-gray-700">
+                        <!-- Placeholder for game iframe -->
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <p class="text-gray-500 dark:text-gray-400">New Game 4</p>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-1">Sports Challenge</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Compete in various sports events and win medals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="py-12">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center">Game Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <a href="#" class="bg-apple-blue text-white rounded-lg p-4 text-center hover:bg-apple-blue/90 transition-colors">
+                    <span class="block font-semibold">Action</span>
+                </a>
+                <a href="#" class="bg-apple-indigo text-white rounded-lg p-4 text-center hover:bg-apple-indigo/90 transition-colors">
+                    <span class="block font-semibold">Adventure</span>
+                </a>
+                <a href="#" class="bg-apple-purple text-white rounded-lg p-4 text-center hover:bg-apple-purple/90 transition-colors">
+                    <span class="block font-semibold">Puzzle</span>
+                </a>
+                <a href="#" class="bg-apple-pink text-white rounded-lg p-4 text-center hover:bg-apple-pink/90 transition-colors">
+                    <span class="block font-semibold">Strategy</span>
+                </a>
+                <a href="#" class="bg-apple-orange text-white rounded-lg p-4 text-center hover:bg-apple-orange/90 transition-colors">
+                    <span class="block font-semibold">Sports</span>
+                </a>
+                <a href="#" class="bg-apple-green text-white rounded-lg p-4 text-center hover:bg-apple-green/90 transition-colors">
+                    <span class="block font-semibold">Racing</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-apple-blue text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+                <p class="mb-6">Subscribe to our newsletter to get updates on new games and features.</p>
+                <form class="flex flex-col sm:flex-row gap-2 justify-center">
+                    <input type="email" placeholder="Your email address" class="px-4 py-2 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white flex-grow max-w-md">
+                    <button type="submit" class="bg-white text-apple-blue font-semibold px-6 py-2 rounded-full hover:bg-opacity-90 transition-all">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-100 dark:bg-gray-900 py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">SGameTune</h3>
+                    <p class="text-gray-600 dark:text-gray-400">The premier destination for browser-based gaming with no downloads required.</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Home</a></li>
+                        <li><a href="#featured" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Featured Games</a></li>
+                        <li><a href="#popular" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Popular Games</a></li>
+                        <li><a href="#new" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">New Releases</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Categories</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Action</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Adventure</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Puzzle</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Strategy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Contact</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Support</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-apple-blue transition-colors">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 dark:border-gray-800 mt-8 pt-8 text-center text-gray-600 dark:text-gray-400">
+                <p>&copy; 2025 SGameTune. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for mobile menu toggle -->
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

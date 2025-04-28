@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球原型</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f0f2f5;
+      padding: 20px;
+    }
+    
+    .prototype-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      gap: 30px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    
+    .prototype-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .prototype-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .prototype-frame {
+      border: none;
+      border-radius: 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    
+    .header p {
+      color: #666;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>知识星球应用原型</h1>
+    <p>这是一个类似知识星球的应用高保真原型，包含10个主要界面。每个界面都模拟了iPhone 15 Pro的尺寸和样式，并使用了真实的UI元素和图片资源。</p>
+  </div>
+  
+  <div class="prototype-container">
+    <div class="prototype-item">
+      <div class="prototype-title">首页</div>
+      <iframe src="home.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">发现页</div>
+      <iframe src="discover.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">星球详情页</div>
+      <iframe src="sphere_detail.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">内容详情页</div>
+      <iframe src="content_detail.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">发布页</div>
+      <iframe src="publish.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">消息页</div>
+      <iframe src="messages.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">个人中心</div>
+      <iframe src="profile.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">设置页</div>
+      <iframe src="settings.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">登录/注册页</div>
+      <iframe src="login.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+    
+    <div class="prototype-item">
+      <div class="prototype-title">支付页</div>
+      <iframe src="payment.html" width="375" height="812" class="prototype-frame"></iframe>
+    </div>
+  </div>
+</body>
+</html> 

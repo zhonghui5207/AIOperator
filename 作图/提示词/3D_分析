@@ -1,0 +1,43 @@
+{ 
+  "art_style_profile": { 
+    "style_name": "Playful Minimalist 3D Illustration", 
+    "visual_elements": { 
+      "shape_language": "Rounded edges, soft forms with simplified geometry, playful proportions", 
+      "colors": { 
+        "primary_palette": ["Soft beige, light gray, pastel blue, warm orange"], 
+        "accent_colors": ["Warm orange for interactive elements and handles", "Pastel blue for statement pieces"], 
+        "shading": "Soft gradients with smooth transitions, gentle shadows that enhance dimensionality" 
+      }, 
+      "lighting": { 
+        "type": "Soft, diffused ambient lighting with subtle directional highlights", 
+        "source_direction": "Above and slightly to the side, creating gentle shadows", 
+        "shadow_style": "Soft, diffused shadows that add depth without harsh contrast" 
+      }, 
+      "materials": { 
+        "surface_texture": "Matte, smooth surfaces with subtle texture details", 
+        "reflectivity": "Minimal to none, maintaining the clean matte aesthetic" 
+      }, 
+      "composition": { 
+        "object_presentation": "Objects displayed either in isolation or in functional groupings with ample negative space", 
+        "perspective": "Slightly angled isometric view giving depth while maintaining clarity", 
+        "background": "Solid beige or neutral color that complements the objects and creates a warm, inviting atmosphere" 
+      }, 
+      "typography": { 
+        "font_style": "Clean, minimalistic sans-serif", 
+        "text_placement": "Subtle labeling in bottom corners or integrated naturally with objects", 
+        "color": "Light gray or muted tones that complement the overall palette" 
+      }, 
+      "rendering_style": { 
+        "technique": "Clean 3D render with simplified forms and clay-like finish", 
+        "detail_level": "Selective detail - focusing on functional elements while maintaining overall simplicity" 
+      },
+      "distinctive_features": {
+        "color_accents": "Strategic use of warm orange for interactive elements and controls",
+        "object_styling": "Functional objects with playful proportions and friendly appearance",
+        "scene_types": "Both standalone objects and functional environments (workspaces, living areas)",
+        "character_design": "Simplified human figures with minimal features when included in scenes"
+      }
+    }, 
+    "purpose": "To create approachable, playful yet professional 3D illustrations that communicate function and form with warmth and simplicity, perfect for product visualization, interface design, and environmental concepts." 
+  }
+}

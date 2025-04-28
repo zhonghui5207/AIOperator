@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 登录</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .login-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    
+    .logo-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 60px 0 40px;
+    }
+    
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background-color: var(--primary-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 20px rgba(84, 104, 255, 0.3);
+    }
+    
+    .logo i {
+      color: white;
+      font-size: 40px;
+    }
+    
+    .app-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--text-color);
+    }
+    
+    .app-slogan {
+      font-size: 14px;
+      color: var(--light-text);
+      margin-top: 8px;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 30px;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 16px;
+      color: var(--light-text);
+      position: relative;
+    }
+    
+    .tab.active {
+      color: var(--text-color);
+      font-weight: 600;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 25%;
+      width: 50%;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    .input-label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: var(--text-color);
+    }
+    
+    .input-field {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      font-size: 15px;
+      outline: none;
+    }
+    
+    .input-field:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--light-text);
+    }
+    
+    .forgot-password {
+      text-align: right;
+      margin-bottom: 30px;
+    }
+    
+    .forgot-password a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .login-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      color: var(--light-text);
+    }
+    
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background-color: var(--border-color);
+    }
+    
+    .divider span {
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    
+    .social-login {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .social-btn {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 10px;
+      color: var(--text-color);
+      font-size: 20px;
+    }
+    
+    .wechat {
+      color: #07C160;
+    }
+    
+    .weibo {
+      color: #E6162D;
+    }
+    
+    .qq {
+      color: #12B7F5;
+    }
+    
+    .terms {
+      text-align: center;
+      font-size: 12px;
+      color: var(--light-text);
+      margin-top: auto;
+      padding-bottom: 20px;
+    }
+    
+    .terms a {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 登录内容 -->
+    <div class="content">
+      <div class="login-container">
+        <!-- Logo和应用名称 -->
+        <div class="logo-container">
+          <div class="logo">
+            <i class="fas fa-globe"></i>
+          </div>
+          <div class="app-name">知识星球</div>
+          <div class="app-slogan">连接你我，共同成长</div>
+        </div>
+        
+        <!-- 登录/注册标签页 -->
+        <div class="tabs">
+          <div class="tab active">登录</div>
+          <div class="tab">注册</div>
+        </div>
+        
+        <!-- 登录表单 -->
+        <div class="input-group">
+          <div class="input-label">手机号码</div>
+          <input type="tel" class="input-field" placeholder="请输入手机号码">
+        </div>
+        
+        <div class="input-group">
+          <div class="input-label">密码</div>
+          <div class="password-container">
+            <input type="password" class="input-field" placeholder="请输入密码">
+            <i class="far fa-eye toggle-password"></i>
+          </div>
+        </div>
+        
+        <div class="forgot-password">
+          <a href="#">忘记密码？</a>
+        </div>
+        
+        <a href="home.html" class="login-btn">登录</a>
+        
+        <!-- 其他登录方式 -->
+        <div class="divider">
+          <span>其他登录方式</span>
+        </div>
+        
+        <div class="social-login">
+          <a href="#" class="social-btn wechat">
+            <i class="fab fa-weixin"></i>
+          </a>
+          <a href="#" class="social-btn weibo">
+            <i class="fab fa-weibo"></i>
+          </a>
+          <a href="#" class="social-btn qq">
+            <i class="fab fa-qq"></i>
+          </a>
+        </div>
+        
+        <!-- 用户协议 -->
+        <div class="terms">
+          登录即表示您同意<a href="#">《用户协议》</a>和<a href="#">《隐私政策》</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html> 

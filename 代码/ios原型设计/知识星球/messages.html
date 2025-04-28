@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 消息</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
+    .tabs {
+      display: flex;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 44px;
+      z-index: 10;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--light-text);
+    }
+    
+    .tab.active {
+      color: var(--primary-color);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+    
+    .message-item {
+      display: flex;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--card-background);
+    }
+    
+    .message-avatar {
+      position: relative;
+      margin-right: 12px;
+    }
+    
+    .message-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: var(--danger-color);
+      color: white;
+      border-radius: 10px;
+      min-width: 18px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    .message-content {
+      flex: 1;
+    }
+    
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    
+    .message-name {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .message-time {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+    
+    .message-text {
+      font-size: 14px;
+      color: var(--light-text);
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    
+    .message-meta {
+      font-size: 12px;
+      color: var(--lighter-text);
+    }
+    
+    .notification-item {
+      display: flex;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--card-background);
+    }
+    
+    .notification-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      background-color: rgba(84, 104, 255, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--primary-color);
+      margin-right: 12px;
+    }
+    
+    .notification-content {
+      flex: 1;
+    }
+    
+    .notification-text {
+      font-size: 14px;
+      line-height: 1.4;
+      margin-bottom: 4px;
+    }
+    
+    .notification-time {
+      font-size: 12px;
+      color: var(--light-text);
+    }
+    
+    .notification-highlight {
+      color: var(--primary-color);
+      font-weight: 500;
+    }
+    
+    .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      color: var(--light-text);
+    }
+    
+    .empty-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      color: #e0e0e0;
+    }
+    
+    .empty-text {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    
+    .empty-subtext {
+      font-size: 14px;
+      color: var(--lighter-text);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <!-- 头部 -->
+      <div class="header">
+        <div class="title">消息</div>
+        <i class="fas fa-cog" style="font-size: 18px;"></i>
+      </div>
+      
+      <!-- 标签页 -->
+      <div class="tabs">
+        <div class="tab active">聊天</div>
+        <div class="tab">通知</div>
+        <div class="tab">@我</div>
+      </div>
+      
+      <!-- 聊天列表 -->
+      <div class="message-list">
+        <div class="message-item">
+          <div class="message-avatar">
+            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="科技达人" class="avatar">
+            <div class="message-badge">3</div>
+          </div>
+          <div class="message-content">
+            <div class="message-header">
+              <div class="message-name">科技达人</div>
+              <div class="message-time">10:30</div>
+            </div>
+            <div class="message-text">感谢你的提问，关于GPT-5的视频理解功能，目前支持的最长视频时长是...</div>
+            <div class="message-meta">未来科技探索</div>
+          </div>
+        </div>
+        
+        <div class="message-item">
+          <div class="message-avatar">
+            <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="AI研究员" class="avatar">
+          </div>
+          <div class="message-content">
+            <div class="message-header">
+              <div class="message-name">AI研究员</div>
+              <div class="message-time">昨天</div>
+            </div>
+            <div class="message-text">我看了你分享的那篇论文，确实很有启发性，特别是关于多模态模型的部分</div>
+            <div class="message-meta">未来科技探索</div>
+          </div>
+        </div>
+        
+        <div class="message-item">
+          <div class="message-avatar">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="张财富" class="avatar">
+          </div>
+          <div class="message-content">
+            <div class="message-header">
+              <div class="message-name">张财富</div>
+              <div class="message-time">周一</div>
+            </div>
+            <div class="message-text">最近市场波动较大，我建议关注一下科技股的表现，特别是AI相关的公司</div>
+            <div class="message-meta">投资理财</div>
+          </div>
+        </div>
+        
+        <div class="message-item">
+          <div class="message-avatar">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="程序媛" class="avatar">
+            <div class="message-badge">1</div>
+          </div>
+          <div class="message-content">
+            <div class="message-header">
+              <div class="message-name">程序媛</div>
+              <div class="message-time">周日</div>
+            </div>
+            <div class="message-text">谢谢你分享的编程资源，我已经开始学习了，有几个问题想请教一下</div>
+            <div class="message-meta">编程学习</div>
+          </div>
+        </div>
+        
+        <!-- 通知列表（默认隐藏） -->
+        <div class="notification-list" style="display: none;">
+          <div class="notification-item">
+            <div class="notification-icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="notification-highlight">科技达人</span> 赞了你的评论：「这个观点很有深度，我也认为AI在医疗领域的应用前景...」
+              </div>
+              <div class="notification-time">30分钟前</div>
+            </div>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-icon">
+              <i class="fas fa-comment"></i>
+            </div>
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="notification-highlight">AI研究员</span> 回复了你的评论：「确实如此，我们团队最近也在研究这个方向...」
+              </div>
+              <div class="notification-time">2小时前</div>
+            </div>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-icon">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="notification-content">
+              <div class="notification-text">
+                <span class="notification-highlight">张财富</span> 关注了你
+              </div>
+              <div class="notification-time">昨天</div>
+            </div>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="notification-content">
+              <div class="notification-text">
+                你的帖子「人工智能在医疗领域的最新应用」被设为精华帖
+              </div>
+              <div class="notification-time">2天前</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- @我列表（默认隐藏） -->
+        <div class="empty-state" style="display: none;">
+          <i class="far fa-comment-dots empty-icon"></i>
+          <div class="empty-text">暂无提及</div>
+          <div class="empty-subtext">当有人在评论或帖子中@你时，会显示在这里</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+      <a href="home.html" class="tab-item">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </a>
+      <a href="discover.html" class="tab-item">
+        <i class="fas fa-compass"></i>
+        <span>发现</span>
+      </a>
+      <a href="publish.html" class="tab-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>发布</span>
+      </a>
+      <a href="messages.html" class="tab-item active">
+        <i class="fas fa-comment"></i>
+        <span>消息</span>
+      </a>
+      <a href="profile.html" class="tab-item">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 个人中心</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .profile-header {
+      background-color: var(--primary-color);
+      padding: 20px 16px;
+      color: white;
+      position: relative;
+    }
+    
+    .settings-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: white;
+      font-size: 20px;
+    }
+    
+    .profile-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .profile-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 35px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      margin-right: 16px;
+    }
+    
+    .profile-name {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .profile-id {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .profile-stats {
+      display: flex;
+      justify-content: space-around;
+    }
+    
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .stat-value {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .stat-label {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .section-header {
+      padding: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .section-header a {
+      color: var(--primary-color);
+      font-size: 14px;
+      font-weight: normal;
+      text-decoration: none;
+    }
+    
+    .sphere-list {
+      background-color: var(--card-background);
+    }
+    
+    .sphere-item {
+      display: flex;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .sphere-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      margin-right: 12px;
+    }
+    
+    .sphere-info {
+      flex: 1;
+    }
+    
+    .sphere-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .sphere-meta {
+      font-size: 12px;
+      color: var(--light-text);
+      display: flex;
+      align-items: center;
+    }
+    
+    .sphere-meta span {
+      margin-right: 12px;
+    }
+    
+    .sphere-meta i {
+      margin-right: 4px;
+    }
+    
+    .menu-list {
+      background-color: var(--card-background);
+      margin-top: 12px;
+      border-radius: var(--border-radius);
+    }
+    
+    .menu-item {
+      display: flex;
+      align-items: center;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    
+    .menu-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 12px;
+      color: var(--primary-color);
+    }
+    
+    .menu-label {
+      flex: 1;
+      font-size: 15px;
+    }
+    
+    .menu-arrow {
+      color: var(--light-text);
+    }
+    
+    .badge-new {
+      background-color: var(--danger-color);
+      color: white;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 10px;
+      margin-left: 8px;
+    }
+    
+    .profile-actions {
+      display: flex;
+      padding: 16px;
+    }
+    
+    .action-btn {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+    
+    .action-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 8px;
+      color: var(--primary-color);
+      font-size: 20px;
+    }
+    
+    .action-label {
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <!-- 个人信息头部 -->
+      <div class="profile-header">
+        <a href="settings.html" class="settings-btn">
+          <i class="fas fa-cog"></i>
+        </a>
+        
+        <div class="profile-info">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="用户头像" class="profile-avatar">
+          <div>
+            <div class="profile-name">李小明</div>
+            <div class="profile-id">ID: xiaoming123</div>
+          </div>
+        </div>
+        
+        <div class="profile-stats">
+          <div class="stat-item">
+            <div class="stat-value">8</div>
+            <div class="stat-label">已加入</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">56</div>
+            <div class="stat-label">内容</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">128</div>
+            <div class="stat-label">关注</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-value">235</div>
+            <div class="stat-label">粉丝</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 快捷操作 -->
+      <div class="profile-actions">
+        <a href="#" class="action-btn">
+          <div class="action-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="action-label">收藏</div>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-icon">
+            <i class="fas fa-history"></i>
+          </div>
+          <div class="action-label">历史</div>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-icon">
+            <i class="fas fa-wallet"></i>
+          </div>
+          <div class="action-label">钱包</div>
+        </a>
+        <a href="#" class="action-btn">
+          <div class="action-icon">
+            <i class="fas fa-qrcode"></i>
+          </div>
+          <div class="action-label">二维码</div>
+        </a>
+      </div>
+      
+      <!-- 我的星球 -->
+      <div class="section-header">
+        <span>我加入的星球</span>
+        <a href="#">查看全部</a>
+      </div>
+      
+      <div class="sphere-list">
+        <div class="sphere-item">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="未来科技探索" class="sphere-img">
+          <div class="sphere-info">
+            <div class="sphere-name">未来科技探索</div>
+            <div class="sphere-meta">
+              <span><i class="fas fa-user"></i> 5.6万人</span>
+              <span><i class="fas fa-file-alt"></i> 今日更新 12</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sphere-item">
+          <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="理财小白成长营" class="sphere-img">
+          <div class="sphere-info">
+            <div class="sphere-name">理财小白成长营</div>
+            <div class="sphere-meta">
+              <span><i class="fas fa-user"></i> 2.8万人</span>
+              <span><i class="fas fa-file-alt"></i> 今日更新 5</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="sphere-item">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="编程学习" class="sphere-img">
+          <div class="sphere-info">
+            <div class="sphere-name">编程学习</div>
+            <div class="sphere-meta">
+              <span><i class="fas fa-user"></i> 1.5万人</span>
+              <span><i class="fas fa-file-alt"></i> 今日更新 8</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 菜单列表 -->
+      <div class="menu-list">
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-edit"></i>
+          </div>
+          <div class="menu-label">我的创作</div>
+          <i class="fas fa-chevron-right menu-arrow"></i>
+        </a>
+        
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-heart"></i>
+          </div>
+          <div class="menu-label">我的点赞</div>
+          <i class="fas fa-chevron-right menu-arrow"></i>
+        </a>
+        
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-gift"></i>
+          </div>
+          <div class="menu-label">
+            邀请好友
+            <span class="badge-new">新</span>
+          </div>
+          <i class="fas fa-chevron-right menu-arrow"></i>
+        </a>
+        
+        <a href="#" class="menu-item">
+          <div class="menu-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <div class="menu-label">帮助与反馈</div>
+          <i class="fas fa-chevron-right menu-arrow"></i>
+        </a>
+      </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+      <a href="home.html" class="tab-item">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </a>
+      <a href="discover.html" class="tab-item">
+        <i class="fas fa-compass"></i>
+        <span>发现</span>
+      </a>
+      <a href="publish.html" class="tab-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>发布</span>
+      </a>
+      <a href="messages.html" class="tab-item">
+        <i class="fas fa-comment"></i>
+        <span>消息</span>
+      </a>
+      <a href="profile.html" class="tab-item active">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 

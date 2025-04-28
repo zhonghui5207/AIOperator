@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>知识星球 - 星球详情</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .header {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .header-bg {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.7);
+    }
+    
+    .header-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 20px;
+      color: white;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0));
+    }
+    
+    .sphere-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .sphere-desc {
+      font-size: 14px;
+      margin-bottom: 12px;
+      opacity: 0.9;
+    }
+    
+    .sphere-meta {
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .sphere-meta span {
+      margin-right: 16px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .sphere-meta i {
+      margin-right: 4px;
+    }
+    
+    .sphere-actions {
+      display: flex;
+      padding: 16px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--card-background);
+    }
+    
+    .sphere-action {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text-color);
+      text-decoration: none;
+    }
+    
+    .sphere-action i {
+      font-size: 20px;
+      margin-bottom: 4px;
+      color: var(--primary-color);
+    }
+    
+    .sphere-action span {
+      font-size: 12px;
+    }
+    
+    .tabs {
+      display: flex;
+      background-color: var(--card-background);
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px 0;
+      font-size: 15px;
+      color: var(--light-text);
+    }
+    
+    .tab.active {
+      color: var(--primary-color);
+      font-weight: 500;
+      position: relative;
+    }
+    
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 20px;
+      height: 3px;
+      background-color: var(--primary-color);
+      border-radius: 3px;
+    }
+    
+    .post-card {
+      padding: 16px;
+      background-color: var(--card-background);
+      margin-bottom: 10px;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .post-info {
+      margin-left: 12px;
+    }
+    
+    .post-author {
+      font-weight: 500;
+      font-size: 15px;
+    }
+    
+    .post-meta {
+      font-size: 12px;
+      color: var(--light-text);
+      margin-top: 2px;
+    }
+    
+    .post-content {
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    
+    .post-image {
+      width: 100%;
+      border-radius: var(--small-radius);
+      margin-bottom: 12px;
+    }
+    
+    .post-actions {
+      display: flex;
+      justify-content: space-between;
+      color: var(--light-text);
+      font-size: 14px;
+    }
+    
+    .post-action {
+      display: flex;
+      align-items: center;
+    }
+    
+    .post-action i {
+      margin-right: 4px;
+    }
+    
+    .join-btn {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      z-index: 10;
+    }
+    
+    .owner-info {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+    }
+    
+    .owner-name {
+      font-size: 14px;
+      font-weight: 500;
+      margin-left: 8px;
+    }
+    
+    .back-btn {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      z-index: 10;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .share-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 10;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.3);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="iphone-container">
+    <!-- 状态栏 -->
+    <div class="status-bar">
+      <div class="status-bar-left">
+        <span>9:41</span>
+      </div>
+      <div class="status-bar-right">
+        <i class="fas fa-signal"></i>
+        <i class="fas fa-wifi ml-10"></i>
+        <i class="fas fa-battery-full ml-10"></i>
+      </div>
+    </div>
+    
+    <!-- 内容区域 -->
+    <div class="content">
+      <!-- 头部 -->
+      <div class="header">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="未来科技探索" class="header-bg">
+        <a href="discover.html" class="back-btn">
+          <i class="fas fa-arrow-left"></i>
+        </a>
+        <a href="#" class="share-btn">
+          <i class="fas fa-share-alt"></i>
+        </a>
+        <div class="header-content">
+          <div class="sphere-title">未来科技探索</div>
+          <div class="sphere-desc">探索前沿科技，预见未来趋势，分享最新科技资讯和深度解析</div>
+          <div class="owner-info">
+            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="科技达人" class="avatar avatar-sm">
+            <span class="owner-name">科技达人</span>
+          </div>
+          <div class="sphere-meta">
+            <span><i class="fas fa-user"></i> 5.6万人</span>
+            <span><i class="fas fa-file-alt"></i> 3.2万内容</span>
+            <span><i class="fas fa-calendar-alt"></i> 2020年创建</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 操作栏 -->
+      <div class="sphere-actions">
+        <a href="#" class="sphere-action">
+          <i class="fas fa-star"></i>
+          <span>收藏</span>
+        </a>
+        <a href="#" class="sphere-action">
+          <i class="fas fa-bell"></i>
+          <span>提醒</span>
+        </a>
+        <a href="#" class="sphere-action">
+          <i class="fas fa-share-alt"></i>
+          <span>分享</span>
+        </a>
+        <a href="#" class="sphere-action">
+          <i class="fas fa-ellipsis-h"></i>
+          <span>更多</span>
+        </a>
+      </div>
+      
+      <!-- 标签页 -->
+      <div class="tabs">
+        <div class="tab active">最新</div>
+        <div class="tab">精华</div>
+        <div class="tab">介绍</div>
+        <div class="tab">成员</div>
+      </div>
+      
+      <!-- 内容列表 -->
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="科技达人" class="avatar">
+          <div class="post-info">
+            <div class="post-author">科技达人 <span style="color: #ff9500; font-size: 12px;">创建者</span></div>
+            <div class="post-meta">2小时前</div>
+          </div>
+        </div>
+        <div class="post-content">
+          【重磅】刚刚，OpenAI发布了GPT-5，这次的更新主要集中在多模态理解和生成能力上，可以同时处理文本、图像、音频和视频输入...
+        </div>
+        <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="GPT-5" class="post-image">
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>256</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>78</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="AI研究员" class="avatar">
+          <div class="post-info">
+            <div class="post-author">AI研究员 <span style="color: #5468ff; font-size: 12px;">管理员</span></div>
+            <div class="post-meta">昨天</div>
+          </div>
+        </div>
+        <div class="post-content">
+          分享一篇关于量子计算最新突破的论文解读，这项技术有望在未来5年内实现商业化应用，对密码学和药物研发领域将产生重大影响...
+        </div>
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>189</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>42</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="post-card">
+        <div class="post-header">
+          <img src="https://images.unsplash.com/photo-1557862921-37829c790f19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2560&q=80" alt="科技爱好者" class="avatar">
+          <div class="post-info">
+            <div class="post-author">科技爱好者</div>
+            <div class="post-meta">3天前</div>
+          </div>
+        </div>
+        <div class="post-content">
+          请问大家对苹果最新发布的Vision Pro有什么看法？值得购买吗？我主要是想用来做设计和3D建模工作...
+        </div>
+        <div class="post-actions">
+          <div class="post-action">
+            <i class="far fa-heart"></i>
+            <span>76</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-comment"></i>
+            <span>35</span>
+          </div>
+          <div class="post-action">
+            <i class="far fa-share-square"></i>
+            <span>分享</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 加入按钮 -->
+      <button class="btn join-btn">加入星球 ¥99/年</button>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+      <a href="home.html" class="tab-item">
+        <i class="fas fa-home"></i>
+        <span>首页</span>
+      </a>
+      <a href="discover.html" class="tab-item active">
+        <i class="fas fa-compass"></i>
+        <span>发现</span>
+      </a>
+      <a href="publish.html" class="tab-item">
+        <i class="fas fa-plus-circle"></i>
+        <span>发布</span>
+      </a>
+      <a href="messages.html" class="tab-item">
+        <i class="fas fa-comment"></i>
+        <span>消息</span>
+      </a>
+      <a href="profile.html" class="tab-item">
+        <i class="fas fa-user"></i>
+        <span>我的</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html> 
